@@ -126,6 +126,22 @@ class Shop extends ChangeNotifier {
     }
   }
 
+    void increaseQuantity(Prodect product) {
+    final index = cart.indexWhere((p) => p.id == product.id);
+    if (index != -1) {
+      cart[index].quantity++;
+      notifyListeners();
+    }
+  }
+void decreaseQuantity(Prodect product) {
+    final index = cart.indexWhere((p) => p.id == product.id);
+    if (index != -1 && cart[index].quantity > 1) {
+      cart[index].quantity--;
+    } else {
+      removeFromCart(product); // Remove item if quantity is 0
+    }
+    notifyListeners();
+  }
   // Method to clear the cart
   void clearCart() {
     _cart.clear();

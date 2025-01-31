@@ -24,6 +24,7 @@ class CartPage extends StatelessWidget {
               },
               child: const Text("Cancel"),
             ),
+           
             TextButton(
               onPressed: () {
                 context.read<Shop>().removeFromCart(product);
@@ -64,8 +65,28 @@ class CartPage extends StatelessWidget {
                             title: Text(item.name),
                             subtitle: Text(
                               'Quantity: ${item.quantity}\nPrice: \$${item.totalPrice.toStringAsFixed(2)}',
-                            ),
-                            trailing: IconButton(
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500
+                            ),),
+                             trailing: SizedBox(
+  width: 100, // Restrict width to avoid overflow
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      IconButton(
+        onPressed: () => context.read<Shop>().increaseQuantity(item),
+        icon: const Icon(Icons.add_box_rounded),
+      ),
+      IconButton(
+        onPressed: () => context.read<Shop>().decreaseQuantity(item),
+        icon: const Icon(Icons.indeterminate_check_box_rounded,),
+      ),
+    ],
+  ),
+),
+
+                            leading: IconButton(
                               onPressed: () => removeItemCart(context, item),
                               icon: const Icon(Icons.delete, color: Colors.red),
                             ),

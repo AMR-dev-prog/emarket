@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CoasetAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -15,14 +16,14 @@ class CoasetAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(35),
-          bottomRight: Radius.circular(35),
+          bottomLeft: Radius.circular(35).w,
+          bottomRight: Radius.circular(35).w,
         ),
         color: Colors.green, // Background color for the AppBar container
       ),
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20).w,
       child: AppBar(
         title: Text(title),
         centerTitle: true,
@@ -35,5 +36,5 @@ class CoasetAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 50); // Adjust total height to account for custom padding
+  Size get preferredSize =>  Size.fromHeight(kToolbarHeight + 50.h); // Adjust total height to account for custom padding
 }

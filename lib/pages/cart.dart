@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/mode/prodect.dart';
 import 'package:untitled2/mode/shop.dart';
@@ -46,7 +47,7 @@ class CartPage extends StatelessWidget {
           ? Center(
               child: Text(
                 'Your cart is empty.',
-                style: TextStyle(fontSize: 20, color: Colors.grey.shade700),
+                style: TextStyle(fontSize: 20.sp, color: Colors.grey.shade700),
               ),
             )
           : Column(
@@ -58,29 +59,29 @@ class CartPage extends StatelessWidget {
                       final item = cart[index];
                       return Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 5.0, horizontal: 10.0),
+                            vertical: 5.0, horizontal: 10.0).w,
                         child: Card(
                           elevation: 3,
                           child: ListTile(
                             title: Text(item.name),
                             subtitle: Text(
                               'Quantity: ${item.quantity}\nPrice: \$${item.totalPrice.toStringAsFixed(2)}',
-                            style: TextStyle(
-                              fontSize: 15,
+                            style:  TextStyle(
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w500
                             ),),
                              trailing: SizedBox(
-  width: 100, // Restrict width to avoid overflow
+  width: 100.w, // Restrict width to avoid overflow
   child: Row(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
       IconButton(
         onPressed: () => context.read<Shop>().increaseQuantity(item),
-        icon: const Icon(Icons.add_box_rounded),
+        icon:  Icon(Icons.add_box_rounded,size: 25.sp,),
       ),
       IconButton(
         onPressed: () => context.read<Shop>().decreaseQuantity(item),
-        icon: const Icon(Icons.indeterminate_check_box_rounded,),
+        icon:  Icon(Icons.indeterminate_check_box_rounded,size: 25.sp,),
       ),
     ],
   ),
@@ -97,17 +98,17 @@ class CartPage extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0).w,
                   child: Text(
                     'Total: \$${cart.fold<double>(0, (double sum, item) => sum + item.totalPrice).toStringAsFixed(2)}',
-                    style: const TextStyle(
-                      fontSize: 18,
+                    style:  TextStyle(
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.green,
                     ),
                   ),
                 ),
-                const SizedBox(height: 25),
+                 SizedBox(height: 25.h),
               ],
             ),
     );

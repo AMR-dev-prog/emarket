@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Catagory extends StatefulWidget {
   const Catagory({super.key});
@@ -25,9 +26,9 @@ class _CatagoryState extends State<Catagory> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 160, // Adjust height as needed
+      height: 125.h, // Adjust height as needed
      
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8).w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -40,21 +41,21 @@ class _CatagoryState extends State<Catagory> {
               itemCount: imageList.length,
               itemBuilder: (context, i) {
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0).w,
                   child: Column(
                     children: [
                       Container(
                         decoration: BoxDecoration(
                         color: Colors.grey.shade400,
-                          borderRadius: BorderRadius.circular(200)
+                          borderRadius: BorderRadius.circular(35).w
                         ),
                         child: 
                             ClipOval(
                             child: Image.asset(
                            imageList[i],
                            fit: BoxFit.cover,
-                           width: 70,
-                           height: 70,
+                           width: 70.w,
+                           height: 60.h,
                          ),
                        ),
 

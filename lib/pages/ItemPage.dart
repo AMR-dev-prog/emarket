@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/mode/prodect.dart';
 import 'package:untitled2/mode/shop.dart';
 
 class ItemPage extends StatefulWidget {
   final Prodect prodect;
+   final String heroTag;
 
   const ItemPage({
     super.key,
     required this.prodect,
+      required this.heroTag
   });
 
   @override
@@ -79,22 +82,24 @@ void addToCart(BuildContext context) {
           'Item Detail',
           style: TextStyle(color: Colors.indigo.shade900, fontWeight: FontWeight.bold),
         ),
-        toolbarHeight: 50,
+        toolbarHeight: 50.h,
       ),
       body: Column(
         children: [
-          const SizedBox(height: 50),
+          
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
-              width: double.infinity,
-              height: 200,
-              child: Image.asset(widget.prodect.imagePath),
+              
+              width: 400.w,
+              height: 150.h,
+              child: Image.asset(widget.prodect.imagePath,
+              width: 400.w,),
             ),
           ),
           Container(
-            height: 40,
-            width: 60,
+            height: 40.h,
+            width: 60.w,
             decoration: BoxDecoration(
               color: Colors.green,
               borderRadius: BorderRadius.circular(5),
@@ -107,13 +112,13 @@ void addToCart(BuildContext context) {
             children: [
               Text(
                 "\$${totalPrice.toStringAsFixed(2)}", // Display price dynamically
-                style: const TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                style:  TextStyle(fontSize: 50.sp, fontWeight: FontWeight.bold,color: Colors.amberAccent),
               ),
             ],
           ),
           Text(
             widget.prodect.name,
-            style: TextStyle(fontSize: 15, color: Colors.indigo.shade800),
+            style: TextStyle(fontSize: 15.sp, color: Colors.indigo.shade800),
           ),
           const Padding(
             padding: EdgeInsets.all(20.0),
@@ -123,7 +128,7 @@ void addToCart(BuildContext context) {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               'Quantity',
-              style: TextStyle(fontSize: 20, color: Colors.grey.shade800),
+              style: TextStyle(fontSize: 20.sp, color: Colors.grey.shade800),
             ),
           ),
           Row(
@@ -135,11 +140,11 @@ void addToCart(BuildContext context) {
                     quantity = quantity + 0.5;
                   });
                 },
-                icon: const Icon(Icons.control_point_sharp, size: 50),
+                icon:  Icon(Icons.control_point_sharp, size: 50.sp),
               ),
               Text(
                 "$quantity Kg",
-                style: const TextStyle(color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold),
+                style:  TextStyle(color: Colors.black, fontSize: 40.sp, fontWeight: FontWeight.bold),
               ),
               IconButton(
                 onPressed: () {
@@ -149,21 +154,21 @@ void addToCart(BuildContext context) {
                     }
                   });
                 },
-                icon: const Icon(Icons.remove_circle_outline, size: 50),
+                icon:  Icon(Icons.remove_circle_outline, size: 50.sp),
               ),
             ],
           ),
-          const SizedBox(height: 150),
+           SizedBox(height: MediaQuery.of(context).size.height/8),
           InkWell(
             onTap: () => addToCart(context),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 40.0, top: 8, bottom: 8, right: 40),
                   child: Container(
-                    height: 50,
-                    width: double.infinity,
+                    height: 50.h,
+                    width: double.infinity.w,
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 186, 243, 188),
                       borderRadius: BorderRadius.circular(5),
@@ -171,23 +176,23 @@ void addToCart(BuildContext context) {
                     child: Center(
                         child: Text(
                       "Add to Cart",
-                      style: TextStyle(color: Colors.blueGrey.shade700, fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.blueGrey.shade700, fontSize: 18.sp, fontWeight: FontWeight.bold),
                     )),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 40.0, right: 40),
                   child: Container(
-                    height: 50,
-                    width: double.infinity,
+                    height: 50.h,
+                    width: double.infinity.w,
                     decoration: BoxDecoration(
                       color: Colors.green,
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: const Center(
+                    child:  Center(
                         child: Text(
                       "Pay Now",
-                      style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold),
                     )),
                   ),
                 ),

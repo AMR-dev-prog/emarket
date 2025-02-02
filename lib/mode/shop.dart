@@ -44,7 +44,7 @@ class Shop extends ChangeNotifier {
 
     ),
       Prodect(
-      name: "product",
+      name: "potato",
       price: 21.99,
       description: "item description",
       imagePath: 'lib/assets/potato-table.jpg',
@@ -54,7 +54,7 @@ class Shop extends ChangeNotifier {
 
     ),
     Prodect(
-      name: "product",
+      name: "mint",
       price: 33.99,
       description: "item description",
       imagePath: 'lib/assets/fresh-organic-mint-garden.jpg',

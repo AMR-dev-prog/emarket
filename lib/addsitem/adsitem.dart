@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class adsitem extends StatefulWidget {
   const adsitem({super.key});
@@ -23,15 +24,15 @@ class _adsitemyState extends State<adsitem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 200, // Adjust height as needed
+      width: double.infinity.w,
+      height: 200.h, // Adjust height as needed
      
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8).w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
         
-          const SizedBox(height: 8),
+           SizedBox(height: 8.h),
           Expanded(
           
             child: ListView.builder(
@@ -39,22 +40,22 @@ class _adsitemyState extends State<adsitem> {
               itemCount: imageList.length,
               itemBuilder: (context, i) {
                 return Padding(
-                  padding: const EdgeInsets.only(top: 8.0,left: 8.0,right: 8.0),
+                  padding: const EdgeInsets.only(top: 8.0,left: 8.0,right: 8.0).w,
                   child: Column(
                     children: [
                       Container(
                         decoration: BoxDecoration(
                         color: Colors.grey.shade400,
-                          borderRadius: BorderRadius.circular(20)
+                          borderRadius: BorderRadius.circular(20).w
                         ),
                         child: 
                          ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(20).w,
                            child:  Image.asset(
                               imageList[i],
                               fit: BoxFit.fill,
-                              width: 350,
-                              height: 150,
+                              width: 350.w,
+                              height: 150.h,
                               
                             ),
                          ),

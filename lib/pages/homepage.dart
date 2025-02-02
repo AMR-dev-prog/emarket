@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:untitled2/addsitem/adsitem.dart';
 import 'package:untitled2/combs/itemcom/catagory.dart';
 import 'package:untitled2/combs/itemcom/logincoms/Drawer.dart';
@@ -19,62 +22,70 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  late int selectedtab;
-  TextEditingController searchController = TextEditingController();
+  late int selectedtab = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    selectedtab = 0; // Initialize the selected tab
+    _loadTab();
   }
 
-  final List<Widget> _pages = [
-    const HomepageContent(), // Extracted content for Homepage
-     const SearchPage(), // Placeholder
-    const CartPage(),
-    const Center(child: Text("Offers Page")), // Placeholder
-    const Userspage(), // Placeholder
-  ];
-
-  void _onItemTapped(int index) {
+  void _loadTab() async {
+    final prefs = await SharedPreferences.getInstance();
     setState(() {
-      selectedtab = index; // Update the selected tab
+      selectedtab = prefs.getInt('selectedTab') ?? 0;
     });
   }
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  void _onItemTapped(int index) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('selectedTab', index);
+    setState(() {
+      selectedtab = index;
+    });
+  }
+
+  final List<Widget> _pages = [
+    const HomepageContent(),
+    const SearchPage(),
+    const CartPage(),
+    const Center(child: Text("Offers Page")),
+    const Userspage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey, // Attach the scaffold key here
+      key: _scaffoldKey,
       appBar: CoasetAppBar(
-        
         title: 'E-market',
         leading: IconButton(
           icon: const Icon(Icons.menu, color: Colors.black),
-          onPressed: () {
-            _scaffoldKey.currentState?.openDrawer(); // Open the drawer
-          },
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
         actions: [
-           IconButton(onPressed: (){
-            showSearch(context: context, delegate: CustomSearch());
-           }, icon: const Icon(Icons.search)),
-           IconButton(
-            icon: const Icon(
-              Icons.add_location,
-              color: Colors.black, // Set the icon color to black
-            ),
+          IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearch());
+            },
+            icon: const Icon(Icons.search),
+          ),
+          IconButton(
+            icon: const Icon(Icons.add_location, color: Colors.black),
             onPressed: () {
               debugPrint("Location icon tapped");
             },
           ),
-          
         ],
       ),
-      drawer: const CustomDrawer(), // Your custom drawer widget
-      body: _pages[selectedtab],
+      drawer: const CustomDrawer(),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom + 10),
+          child: _pages[selectedtab],
+        ),
+      ),
       bottomNavigationBar: CurvedNavigationBar(
         index: selectedtab,
         onTap: _onItemTapped,
@@ -110,7 +121,7 @@ class _HomepageState extends State<Homepage> {
   }
 }
 
-// Extracted homepage content for better readability
+// Extracted homepage content
 class HomepageContent extends StatelessWidget {
   const HomepageContent({super.key});
 
@@ -122,13 +133,9 @@ class HomepageContent extends StatelessWidget {
           const adsitem(),
           const Catagory(),
           const ItemList(category: "best seller"),
-          SizedBox(
-            height: 100,
-            width: double.infinity,
-            child: Image.asset(
-              "lib/assets/7492348.jpg",
-              fit: BoxFit.cover,
-            ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10).w,
+            child: Image.asset("lib/assets/7492348.jpg", width: double.infinity, fit: BoxFit.cover),
           ),
           const ItemList(category: 'new items'),
         ],

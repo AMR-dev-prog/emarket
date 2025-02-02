@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart'; // Ensure you have provider package
 import 'package:untitled2/mode/shop.dart';
+import 'package:untitled2/pages/ItemPage.dart';
 
 class CustomSearch extends SearchDelegate {
   @override
@@ -40,22 +42,36 @@ class CustomSearch extends SearchDelegate {
         .toList();
 
     return ListView.builder(
-      itemCount: filteredProducts.length,
-      itemBuilder: (context, index) {
-        final product = filteredProducts[index];
-        return Card(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              title: Text(product.name), // Assuming 'product' has a name property
-              subtitle: Text("\$${product.price}"), // Assuming 'product' has a price property
-              onTap: () {
-                close(context, product); // Return the selected product
-              },
-            ),
+  itemCount: filteredProducts.length,
+  itemBuilder: (context, index) {
+    final product = filteredProducts[index];
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ItemPage(prodect: product, heroTag: "${product.id}-${product.name}"),
           ),
         );
       },
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListTile(
+            leading: Hero(
+              tag: '${product.id}-${product.name}', // Unique tag for animation
+              child: product.imagePath.isNotEmpty
+                  ? Image.asset(product.imagePath, height: 60.h, fit: BoxFit.cover)
+                  : Image.asset('assets/images/fallback_image.png', height: 60.h, fit: BoxFit.cover),
+            ),
+            title: Text(product.name), // Ensure 'product' has a name property
+            subtitle: Text("\$${product.price}"), // Ensure 'product' has a price property
+          ),
+        ),
+      ),
     );
+  },
+);
+
   }
 }

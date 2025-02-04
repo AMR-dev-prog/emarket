@@ -32,7 +32,7 @@ class _adsitemyState extends State<adsitem> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
         
-           SizedBox(height: 8.h),
+           SizedBox(height: 8.r),
           Expanded(
           
             child: ListView.builder(

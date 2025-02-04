@@ -71,7 +71,7 @@ class CartPage extends StatelessWidget {
                               fontWeight: FontWeight.w500
                             ),),
                              trailing: SizedBox(
-  width: 100.w, // Restrict width to avoid overflow
+  width: 100.r, // Restrict width to avoid overflow
   child: Row(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
@@ -108,7 +108,7 @@ class CartPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                 SizedBox(height: 25.h),
+                 SizedBox(height: 25.r),
               ],
             ),
     );

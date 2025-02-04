@@ -18,8 +18,8 @@ class CoasetAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Container(
       decoration:  BoxDecoration(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(35).w,
-          bottomRight: Radius.circular(35).w,
+          bottomLeft: const Radius.circular(35).w,
+          bottomRight: const Radius.circular(35).w,
         ),
         color: Colors.green, // Background color for the AppBar container
       ),

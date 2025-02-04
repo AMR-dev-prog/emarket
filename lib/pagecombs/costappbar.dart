@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBar extends StatefulWidget {
   const CustomAppBar({super.key});
@@ -43,7 +44,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               ),
             ),
           ),
-          const SizedBox(width: 8), // Spacing between the text field and the menu icon
+           SizedBox(width: 8.r), // Spacing between the text field and the menu icon
           // Menu Icon to Open Drawer
           Builder(
             builder: (context) => IconButton(

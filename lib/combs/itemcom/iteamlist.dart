@@ -24,7 +24,7 @@ class _ItemListState extends State<ItemList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +37,7 @@ class _ItemListState extends State<ItemList> {
               fontSize: 25.sp,
             ),
           ),
-          const SizedBox(height: 8),
+           SizedBox(height: 8.r),
           // Remove the scroll behavior by using a GridView without scroll
           Container(
             child: GridView.count(
@@ -47,13 +47,13 @@ class _ItemListState extends State<ItemList> {
               mainAxisSpacing: 4,
               childAspectRatio: 1.7 / 3,
               shrinkWrap: true, // Ensures the grid is only as tall as necessary
-           physics: NeverScrollableScrollPhysics(),
+           physics: const NeverScrollableScrollPhysics(),
                // Disable scrolling
               children: List.generate(
                 prodects.length < 6 ? prodects.length : 6,
                 (index) {
                   final prodact = prodects[index];
-                  return ItemTile(prodect: prodact);
+                  return ItemTile(product: prodact);
                 },
               ),
             ),

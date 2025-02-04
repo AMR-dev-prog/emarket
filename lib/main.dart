@@ -24,14 +24,19 @@ class MyApp extends StatelessWidget {
         designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-         child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: const Loginpage(),
-          routes: {
-            "homepage":(context)=>const Homepage(),
-          
-          }
-               ),
+         child: Container(
+          color: Colors.white,
+           child: SafeArea(
+             child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              home: const Loginpage(),
+              routes: {
+                "homepage":(context)=>const Homepage(),
+              
+              }
+                   ),
+           ),
+         ),
        );
     
   }
